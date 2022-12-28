@@ -13,12 +13,18 @@ class cartRepository extends Interface(baseRepository) {
     }
 
     async list (req) {
+        console.log('***List from cartRepository *****');
+
         const cache = await this.cacheClient.getCache(req.url);
         if(cache){
+            console.log('It has caché')
             return JSON.parse(cache);
         }
 
-        const cart = await this.Cart.findAll({ attributes: ['id']  });
+        console.log('it has not cache')
+
+        //const cart = await this.Cart.findAll({ attributes: ['id']  });
+        const cart = await this.Cart.findAll();
         this.cacheClient.setCache(req.url, JSON.stringify(cart));
          
         return cart;
@@ -29,9 +35,6 @@ class cartRepository extends Interface(baseRepository) {
             where: {
                 id_customer: res.userData.idCustomer 
             },
-            include: [
-                { model: this.Shop, as: 'shop' }
-            ],
         });
 
         return cart;
@@ -44,9 +47,6 @@ class cartRepository extends Interface(baseRepository) {
             id_shop: idShop,
             state: state
         },
-        include: [
-            { model: this.Shop, as: 'shop' }
-        ],
         });
 
         return cart;

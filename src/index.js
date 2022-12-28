@@ -4,9 +4,6 @@ const express = require('express'),
     bodyParser = require('body-parser');
     cors = require('cors');
 
-// importing routes
-const indexRoutes = require('./routes/index');
-
 const graphqlHTTP = require("express-graphql");
 const schema = require("./graphql/schema");
 
@@ -27,10 +24,6 @@ app.use(cors());
 app.use(morgan('dev'));
 //app.use(express.urlencoded({extended: true}))
 app.use(checkAuth);
-
-
-// routes
-app.use('/', indexRoutes);
 
 // error handler
 app.use(function(err, req, res, next){

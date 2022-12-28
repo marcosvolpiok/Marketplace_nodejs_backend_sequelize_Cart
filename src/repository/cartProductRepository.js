@@ -20,10 +20,6 @@ class cartProductRepository extends Interface(baseRepository) {
         where: {
             id_cart: idCart 
         },
-        include: [
-            { model: this.Cart, as: 'cart' },
-            { model: this.Product, as: 'product' }
-        ],
      });
 
      return cart;
@@ -163,9 +159,6 @@ class cartProductRepository extends Interface(baseRepository) {
             where: {
                 id_cart: id
             },
-            include: [
-                { model: this.Product, as: 'product', attributes: [] }
-            ],
           });
 
         return cart;
