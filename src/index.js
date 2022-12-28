@@ -4,6 +4,9 @@ const express = require('express'),
     bodyParser = require('body-parser');
     cors = require('cors');
 
+const indexRoutes = require('./routes/index');
+app.use('/', indexRoutes);
+
 const graphqlHTTP = require("express-graphql");
 const schema = require("./graphql/schema");
 
