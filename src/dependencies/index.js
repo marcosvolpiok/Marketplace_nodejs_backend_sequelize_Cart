@@ -3,9 +3,10 @@ const { createClient } = require("redis");
 const loginHelper = require('../helpers/loginHelper');
 const { cacheHelper } = require('../helpers/cacheHelper');
 const { queueHelper } = require('../helpers/queueHelper');
+const amqplib = require('amqplib')
 
 const cacheHelperOb = new cacheHelper(createClient);
-const queueHelperOb = new queueHelper();
+const queueHelperOb = new queueHelper(amqplib);
 
 const cartController = require('../controllers/cartController');
 const cartProductController = require('../controllers/cartProductController');

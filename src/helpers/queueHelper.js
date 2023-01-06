@@ -1,7 +1,7 @@
 
 class queueHelper{
-    constructor() {
-      this.amqp = require('amqplib');
+    constructor(amqplib) {
+      this.amqp = amqplib;
       this.connectionInstance = null;
       this.connectionInstance = this.getConnectionInstance();
     }
