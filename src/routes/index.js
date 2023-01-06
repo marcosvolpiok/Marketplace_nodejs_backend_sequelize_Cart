@@ -15,4 +15,6 @@ router.put('/cart/', cartProductControllerOb.add);
 router.delete('/cart/product/', cartProductControllerOb.delete);
 router.patch('/cart/product/', cartProductControllerOb.update);
 
+router.post('/cart/order/:idCart', cartProductControllerOb.createOrderFromCart);
+
 module.exports = router;
