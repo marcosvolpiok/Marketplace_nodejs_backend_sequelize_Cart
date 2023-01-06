@@ -43,6 +43,16 @@ class cartProductController{
       res.status(500).json({message: e.message})
     }    
   }
+
+  createOrderFromCart = async (req, res) => { 
+    try{
+      const cart=await this.cartProductService.createOrderFromCart(req, res);
+      //console.log('returning.-...', cart)
+      res.json(cart);
+    }catch(e){
+      res.status(500).json({message: e.message, stack: e.stack})
+    }
+  }  
 }
 
 

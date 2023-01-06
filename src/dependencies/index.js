@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const { createClient } = require("redis");
 const loginHelper = require('../helpers/loginHelper');
 const { cacheHelper } = require('../helpers/cacheHelper');
+const { queueHelper } = require('../helpers/queueHelper');
+
 const cacheHelperOb = new cacheHelper(createClient);
 
 const cartController = require('../controllers/cartController');
@@ -21,7 +23,7 @@ const cartServiceOb = new cartService(cartRepositoryOb);
 const cartControllerOb = new cartController(cartServiceOb);
 
 const cartProductRepositoryOb=new cartProductRepository(CartProduct, Cart, Shop, Product, Sequelize, sequelize, cacheHelperOb);
-const cartProductServiceOb = new cartProductService(cartProductRepositoryOb);
+const cartProductServiceOb = new cartProductService(cartProductRepositoryOb, queueHelper);
 const cartProductControllerOb = new cartProductController(cartProductServiceOb);
 
 module.exports = {
