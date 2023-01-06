@@ -44,29 +44,14 @@ class cartProductService {
     }
 
     createOrderFromCart = async (req, res) => {
-        const amqp = require('amqplib');
+        //console.log(this.queueHelper);
+        const queue = 'hello';
+        const message = 'Hi Mark!!!';
 
-        let connection = await amqp.connect('amqp://172.17.0.3');  
-        console.log('connectionnnn', connection)
+        this.queueHelper.sendMessage(queue, message);
 
-        const channel = await connection.createChannel();
 
-        var queue = 'hello';
-        var msg = 'Hello World!';
-
-        channel.assertQueue(queue, {
-            durable: false
-        });
-        channel.sendToQueue(queue, Buffer.from(msg));
-
-        console.log(" [x] Sent %s", msg);
-    
-
-        setTimeout(function() {
-            connection.close();
-        }, 500);
-
-        return {status: 'OK'}
+        return {status: 'OK', message: message}
     }      
 }
 

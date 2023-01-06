@@ -5,6 +5,7 @@ const { cacheHelper } = require('../helpers/cacheHelper');
 const { queueHelper } = require('../helpers/queueHelper');
 
 const cacheHelperOb = new cacheHelper(createClient);
+const queueHelperOb = new queueHelper();
 
 const cartController = require('../controllers/cartController');
 const cartProductController = require('../controllers/cartProductController');
@@ -23,7 +24,7 @@ const cartServiceOb = new cartService(cartRepositoryOb);
 const cartControllerOb = new cartController(cartServiceOb);
 
 const cartProductRepositoryOb=new cartProductRepository(CartProduct, Cart, Shop, Product, Sequelize, sequelize, cacheHelperOb);
-const cartProductServiceOb = new cartProductService(cartProductRepositoryOb, queueHelper);
+const cartProductServiceOb = new cartProductService(cartProductRepositoryOb, queueHelperOb);
 const cartProductControllerOb = new cartProductController(cartProductServiceOb);
 
 module.exports = {
