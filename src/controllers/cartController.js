@@ -1,6 +1,6 @@
 class cartController{
   constructor(cartService) {
-    this.cartService=cartService;
+    this.cartService = cartService;
   }
 
   list = async (req, res) => { 
@@ -28,7 +28,7 @@ class cartController{
     }catch(e){
       res.status(500).json({message: e.message})
     }
-  }  
+  }    
 }
 
 
