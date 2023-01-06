@@ -22,6 +22,11 @@ sudo docker run -d -p 6379:6379 redis
 sudo docker run -d -p 6379:6379 --name myredis redis  #It can't be repeated
 ```
 
+# Run RabbitMQ
+```
+docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3
+```
+
 # Manage Redis
 ```
 npm install -g redis-commander
