@@ -3,7 +3,8 @@ const { createClient } = require("redis");
 const loginHelper = require('../helpers/loginHelper');
 const { cacheHelper } = require('../helpers/cacheHelper');
 const { queueHelper } = require('../helpers/queueHelper');
-const amqplib = require('amqplib')
+const amqplib = require('amqplib');
+require('dotenv').config();
 
 const cacheHelperOb = new cacheHelper(createClient);
 const queueHelperOb = new queueHelper(amqplib);

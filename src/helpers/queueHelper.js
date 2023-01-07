@@ -15,8 +15,8 @@ class queueHelper{
     }
 
     getClientConnection = async () => {
-        const connection = await this.amqp.connect('amqp://172.17.0.3');  
-
+        const connection = await this.amqp.connect(`amqp://${process.env.RABBITMQ_HOST}`);  
+        
         return connection;
     }
 
